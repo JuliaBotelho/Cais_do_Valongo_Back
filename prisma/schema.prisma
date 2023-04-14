@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bookings {
+  id             Int            @id @default(autoincrement())
+  userId         Int?
+  dateId         Int?
+  bookingType    String
+  schoolName     String?
+  studentsNumber Int?
+  createdAt      DateTime       @default(now()) @db.Date
+  ExcursionDays  ExcursionDays? @relation(fields: [dateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  Users          Users?         @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model ExcursionDays {
+  id        Int        @id @default(autoincrement())
+  day       DateTime   @db.Date
+  capacity  Int
+  hour      DateTime   @db.Time(6)
+  available Boolean?   @default(true)
+  createdAt DateTime   @default(now()) @db.Date
+  Bookings  Bookings[]
+}
+
+model GeoInfos {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(50)
+  description String
+  image       String
+  createdAt   DateTime @default(now()) @db.Date
+}
+
+model HistInfos {
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(50)
+  description String
+  image       String
+  createdAt   DateTime @default(now()) @db.Date
+}
+
+model Users {
+  id        Int        @id @default(autoincrement())
+  userName  String     @db.VarChar(50)
+  email     String     @unique
+  password  String
+  token     String?
+  createdAt DateTime   @default(now()) @db.Date
+  Bookings  Bookings[]
+}
