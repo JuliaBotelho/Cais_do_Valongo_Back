@@ -30,13 +30,21 @@ CREATE TABLE "Bookings"(id SERIAL PRIMARY KEY,"userId" INTEGER REFERENCES "Users
  */
 
 /* 
+INSERT INTO "ExcursionDays" (id , day, capacity, hour) VALUES (1, '2023-04-19', 25, '10:00:00');
  */
 
 /* 
+INSERT INTO "ExcursionDays" (id , day, capacity, hour) VALUES (2, '2023-04-20', 25, '10:00:00');
  */
 
 /* 
+INSERT INTO "ExcursionDays" (id , day, capacity, hour) VALUES (3, '2023-04-21', 25, '11:00:00');
  */
 
 /* 
+INSERT INTO "ExcursionDays" (id , day, capacity, hour) VALUES (4, '2023-04-22', 25, '11:00:00');
+ */
+
+/* 
+INSERT INTO "ExcursionDays" (id , day, capacity, hour) VALUES (5, '2023-04-23', 25, '12:00:00');
  */
