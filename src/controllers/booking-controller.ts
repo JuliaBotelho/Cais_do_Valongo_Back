@@ -19,7 +19,8 @@ export async function postReservation(req:Request, res:Response){
 
     try{
         if(data.school || data.studentsnumber){
-            const schoolBooking = await bookingService.createSchoolBooking(userid, data.dayid, data.school, data.studentsnumber)
+            const studentsNum = Number(data.studentsnumber)
+            const schoolBooking = await bookingService.createSchoolBooking(userid, data.dayid, data.school, studentsNum)
 
             return res.status(httpStatus.OK).send(schoolBooking);
         }else{
@@ -34,6 +35,7 @@ export async function postReservation(req:Request, res:Response){
 
 export async function getReservation(req:Request, res:Response){
     const userid = res.locals.userId;
+    console.log(userid)
 
     try{
         const userBooking = await bookingService.getBooking(userid)
